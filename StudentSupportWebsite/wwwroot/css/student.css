@@ -1,1 +1,24 @@
-﻿
+﻿header {
+    background-color: #c6c3c2;
+}
+
+body {
+    background-color: #dfdcdc;
+}
+
+footer {
+    background-color: #c6c3c2;
+}
+
+#logo {
+    width: 400px;
+    height: 400px;
+}
+
+.main {
+    text-align: center;
+}
+
+#lookupstubutton {
+    /*background-color: #c6c3c2;*/
+}

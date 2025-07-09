@@ -32,9 +32,8 @@
     <div class="main">
         <img src="/img/Logo.png" alt="logo" id="logo">
         <h1>Students</h1>
-        <h6>Student Support System v1.0</h6>
-
-        <input type="button" value="Lookup Student" id="getbutton" data-bs-toggle="modal" data-bs-target="#theModal" />
+        <h5>Student Support System v1.0</h5>
+        <input type="button" value="Lookup Student" id="lookupstubutton" data-bs-toggle="modal" data-bs-target="#theModal" />
     </div>
 
     <!-- This <div> contains the modal markup -->
@@ -44,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title" id="theModalLabel">Students</h2>
-                    <img src="/img/Logo.png" alt="logo" id="logo">
+                    <img src="/img/Logo.png" alt="logo" id="modallogo">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -74,7 +73,7 @@
                                 <div class="row">
                                     <div class="col-3" style="font-weight:bold">Email:</div>
                                     <div class="col-8">
-                                        <input type="text" placeholder="enter email" id="#TextBoxEmail" class="form-control  my-2" />
+                                        <input type="text" placeholder="enter email" id="TextBoxEmail" class="form-control  my-2" />
                                     </div>
                                 </div>
                             </div>
@@ -83,11 +82,11 @@
                             <input type="button" value="Find Student" id="getbutton" />
                             <div id="status" class="text-left mt-3 mb-2"></div>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <footer>
         <a>© 2024 - Info3070</a>
@@ -96,6 +95,6 @@
     <script src="/lib/js/jquery.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
     <script src="/lib/js/jquery.validate.min.js"></script>
-    <script src="/js/studentlookup.js"></script>
+    <script src="/js/student.js"></script>
 </body>
 </html>
