@@ -1,41 +1,33 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Student Support</title>
+    <title>Lab 7a</title>
     <meta charset="utf-8" />
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link href="/lib/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/student.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        <!--navigation bar-->
-        <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand mx-3" href="#">Student Support</a>
-            <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav mx-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/jsexercises/home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/jsexercises/student.html">Student</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <div class="main">
-        <img src="/img/Logo.png" alt="logo" id="logo">
-        <h1>Students</h1>
-        <h6>Student Support System v1.0</h6>
-
-        <input type="button" value="Lookup Student" id="getbutton" data-bs-toggle="modal" data-bs-target="#theModal" />
-    </div>
+    <!--menuexample-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand mx-3" href="#">Info3070Exercises</a>
+        <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mx-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentlookup.html">Lookup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/modalexample.html">Modal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/lab7a.html" data-bs-toggle="modal" data-bs-target="#theModal">Lab7a</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- This <div> contains the modal markup -->
     <div class="modal fade" id="theModal" data-bs-backdrop="static"
@@ -43,8 +35,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="theModalLabel">Students</h2>
-                    <img src="/img/Logo.png" alt="logo" id="logo">
+                    <h2 class="modal-title" id="theModalLabel">Lab 7a</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -68,34 +59,29 @@
                                     <div class="col-5 text-left" id="phoneno"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3 text-right" style="font-weight:bold;">Last Name:</div>
+                                    <div class="col-3 text-right" style="font-weight:bold;">Email:</div>
                                     <div class="col-7 text-left" id="lastname"></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3" style="font-weight:bold">Email:</div>
+                                    <div class="col-3" style="font-weight:bold">Last Name:</div>
                                     <div class="col-8">
-                                        <input type="text" placeholder="enter email" id="#TextBoxEmail" class="form-control  my-2" />
+                                        <input type="text" placeholder="enter last name" id="TextBoxEmail" class="form-control  my-2" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <input type="button" value="Find Student" id="getbutton" />
-                            <div id="status" class="text-left mt-3 mb-2"></div>
-                        </div>
+                            <div class="card-footer text-center">
+                                <input type="button" value="Find Student" id="getbutton" />
+                                <div id="status" class="text-left mt-3 mb-2"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    <footer>
-        <a>© 2024 - Info3070</a>
-    </footer>
+    </div>
 
     <script src="/lib/js/jquery.min.js"></script>
     <script src="/lib/js/bootstrap.min.js"></script>
-    <script src="/lib/js/jquery.validate.min.js"></script>
     <script src="/js/studentlookup.js"></script>
 </body>
 </html>
