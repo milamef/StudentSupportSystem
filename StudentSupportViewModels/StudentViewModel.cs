@@ -48,7 +48,7 @@ namespace StudentSupportViewModels
                 {
                     Picture64 = Convert.ToBase64String(stu.Picture);
                 }
-                Timer = Convert.ToBase64String(stu.Timer);
+                Timer = Convert.ToBase64String(stu.Timer!);
             }
             catch (NullReferenceException nex)
             {
@@ -81,7 +81,7 @@ namespace StudentSupportViewModels
                 {
                     Picture64 = Convert.ToBase64String(stu.Picture);
                 }
-                Timer = Convert.ToBase64String(stu.Timer);
+                Timer = Convert.ToBase64String(stu.Timer!);
             }
             catch (NullReferenceException nex)
             {
@@ -116,7 +116,7 @@ namespace StudentSupportViewModels
                         Id = stu.Id,
                         MajorId = stu.MajorId,
                         MajorName = stu.Major.MajorName,
-                        Timer = Convert.ToBase64String(stu.Timer)
+                        Timer = Convert.ToBase64String(stu.Timer!)
                     };
                     allVms.Add(stuVm);
                 }

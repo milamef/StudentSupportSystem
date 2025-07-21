@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ExercisesDAL;
+using System;
 using System.Collections.Generic;
 
 namespace StudentSupportDAL;
 
-public partial class Major
+public partial class Major : StudentSupportEntity
 {
-    public int Id { get; set; }
-
     public string? MajorName { get; set; }
-
-    public byte[] Timer { get; set; } = null!;
 
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 }

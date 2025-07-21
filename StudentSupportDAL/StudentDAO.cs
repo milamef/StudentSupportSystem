@@ -6,14 +6,19 @@ namespace StudentSupportDAL
 {
     public class StudentDAO
     {
+        readonly IRepository<Student> _repo;
+        public StudentDAO()
+        {
+            _repo = new StudentSupportRepository<Student>();
+        }
+
+
         public async Task<Student> GetByEmail(string email)
         {
             Student? selectedStudent;
             try
             {
-                StudentSupportContext _db = new();
-                selectedStudent = await _db.Students.FirstOrDefaultAsync(stu => stu.Email ==
-                email);
+                selectedStudent = await _repo.GetOne(stu => stu.Email == email);
             }
             catch (Exception ex)
             {
@@ -30,8 +35,7 @@ namespace StudentSupportDAL
             Student? selectedStudent;
             try
             {
-                StudentSupportContext _db = new();
-                selectedStudent = await _db.Students.FindAsync(id);
+                selectedStudent = await _repo.GetOne(stu => stu.Id == id);
             }
             catch (Exception ex)
             {
@@ -48,8 +52,7 @@ namespace StudentSupportDAL
             List<Student> allStudents;
             try
             {
-                StudentSupportContext _db = new();
-                allStudents = await _db.Students.ToListAsync();
+                allStudents = await _repo.GetAll();
             }
             catch (Exception ex)
             {
@@ -65,9 +68,7 @@ namespace StudentSupportDAL
         {
             try
             {
-                StudentSupportContext _db = new();
-                await _db.Students.AddAsync(newStudent);
-                await _db.SaveChangesAsync();
+                newStudent = await _repo.Add(newStudent);
             }
             catch (Exception ex)
             {
@@ -79,24 +80,20 @@ namespace StudentSupportDAL
         }
 
 
-        public async Task<int> Update(Student updatedStudent)
+        public async Task<UpdateStatus> Update(Student updatedStudent)
         {
-            int studentUpdated = -1;
+            UpdateStatus status;
             try
             {
-                StudentSupportContext _db = new();
-                Student? currentStudent =
-                             await _db.Students.FirstOrDefaultAsync(stu => stu.Id == updatedStudent.Id);
-                _db.Entry(currentStudent!).CurrentValues.SetValues(updatedStudent);
-                studentUpdated = await _db.SaveChangesAsync();
+                status = await _repo.Update(updatedStudent);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Problem in " + GetType().Name + " " +
-                    MethodBase.GetCurrentMethod()!.Name + " " + ex.Message);
+                MethodBase.GetCurrentMethod()!.Name + " " + ex.Message);
                 throw;
             }
-            return studentUpdated;
+            return status;
         }
 
 
@@ -105,10 +102,7 @@ namespace StudentSupportDAL
             int studentsDeleted = -1;
             try
             {
-                StudentSupportContext _db = new();
-                Student? selectedStudent = await _db.Students.FirstOrDefaultAsync(stu => stu.Id == id);
-                _db.Students.Remove(selectedStudent!);
-                studentsDeleted = await _db.SaveChangesAsync();  // returns # of rows removed 
+                studentsDeleted = await _repo.Delete((int)id!);
             }
             catch (Exception ex)
             {
@@ -125,9 +119,7 @@ namespace StudentSupportDAL
             Student? selectedStudent;
             try
             {
-                StudentSupportContext _db = new();
-                selectedStudent = await _db.Students.FirstOrDefaultAsync(stu => stu.PhoneNo ==
-                phoneNo);
+                selectedStudent = await _repo.GetOne(stu => stu.PhoneNo == phoneNo);
             }
             catch (Exception ex)
             {

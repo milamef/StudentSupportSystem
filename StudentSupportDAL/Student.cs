@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ExercisesDAL;
+using System;
 using System.Collections.Generic;
 
 namespace StudentSupportDAL;
 
-public partial class Student
+public partial class Student : StudentSupportEntity
 {
-    public int Id { get; set; }
-
     public string? Title { get; set; }
 
     public string? FirstName { get; set; }
@@ -22,8 +21,6 @@ public partial class Student
     public bool? IsTech { get; set; }
 
     public byte[]? Picture { get; set; }
-
-    public byte[] Timer { get; set; } = null!;
 
     public virtual Major Major { get; set; } = null!;
 }
