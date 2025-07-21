@@ -30,7 +30,51 @@
             $("#status").text(error.message);
         }  // try/catch 
 
-    }); // click event 
+    }); // click event
+
+
+    const getAll = async (msg) => {
+        try {
+            $("#studentList").text("Finding Student Information...");
+            let response = await fetch(`/api/student`);
+            if (response.ok) {
+                let payload = await response.json(); // this returns a promise, so we await it 
+                buildStudentList(payload);
+                msg === "" ? // are we appending to an existing message 
+                    $("#status").text("Students Loaded") : $("#status").text(`${msg} - Students Loaded`);
+            } else if (response.status !== 404) { // probably some other client side error 
+                let problemJson = await response.json();
+                errorRtn(problemJson, response.status);
+            } else { // else 404 not found 
+                $("#status").text("no such path on server");
+            } // else 
+        } catch (error) {
+            $("#status").text(error.message);
+        }
+    }; // getAll     
+
+
+    const buildStudentList = (data) => {
+        $("#studentList").empty();
+        div = $(`<div class="list-group-item text-white bg-secondary row d-flex" id="status">Student Info</div> 
+                  <div class= "list-group-item row d-flex text-center" id="heading"> 
+                  <div class="col-4 h4">Title</div> 
+                  <div class="col-4 h4">First</div> 
+                  <div class="col-4 h4">Last</div> 
+               </div>`);
+        div.appendTo($("#studentList"));
+        sessionStorage.setItem("allstudents", JSON.stringify(data));
+        data.forEach(stu => {
+            btn = $(`<button class="list-group-item row d-flex" id="${stu.id}">`);
+            btn.html(`<div class="col-4" id="studenttitle${stu.id}">${stu.title}</div> 
+                      <div class="col-4" id="studentfname${stu.id}">${stu.firstname}</div> 
+                      <div class="col-4" id="studentlastnam${stu.id}">${stu.lastname}</div>`
+            );
+            btn.appendTo($("#studentList"));
+        }); // forEach 
+    }; // buildStudentList 
+
+    getAll(""); // first grab the data from the server
 
 }); // main jQuery method 
 

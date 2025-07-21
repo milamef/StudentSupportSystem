@@ -30,10 +30,13 @@
     </header>
 
     <div class="main">
-        <img src="/img/Logo.png" alt="logo" id="logo">
-        <h1>Students</h1>
-        <h5>Student Support System v1.0</h5>
-        <input type="button" value="Lookup Student" id="lookupstubutton" data-bs-toggle="modal" data-bs-target="#theModal" />
+        <img src="/img/Logo.png" alt="logo" id="logo" />
+    </div>
+
+    <div class="justify-content-center align-items-center row mt-5 ml-1">
+        <div class="col-12 text-center p-3"><h2>Current Students</h2></div>
+        <div class="list-group col-10" id="studentList" style="height:45vh;">
+        </div>
     </div>
 
     <!-- This <div> contains the modal markup -->
@@ -78,7 +81,6 @@
                             </div>
                             <div class="card-footer">
                                 <input type="button" value="Find Student" id="getbutton" />
-                                <div id="status" class="text-left mt-3 mb-2"></div>
                             </div>
                         </div>
                     </div>
