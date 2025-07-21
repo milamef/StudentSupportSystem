@@ -81,5 +81,28 @@ namespace StudentSupportTests
             await vm.GetByPhoneNumber();
             Assert.NotNull(vm.Firstname);
         }
+
+
+        [Fact]
+        public async Task Student_ConcurrencyTest()
+        {
+            StudentViewModel vm1 = new() { Email = "tt@test.com" };
+            StudentViewModel vm2 = new() { Email = "tt@test.com" };
+            await vm1.GetByEmail(); 
+            if (vm1.Email != "Not Found")
+            {
+                await vm2.GetByEmail(); 
+                vm1.Phoneno = vm1.Phoneno == "(555)555-5551" ? "(555)555-5552" : "(555)555-5551";
+                if (await vm1.Update() == 1)
+                {
+                    vm2.Phoneno = "(666)666-6666";
+                    Assert.True(await vm2.Update() == -2);
+                }
+            }
+            else
+            {
+                Assert.True(false); 
+            }
+        }
     }
 }
