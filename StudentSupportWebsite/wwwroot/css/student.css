@@ -43,6 +43,8 @@ footer {
 
 .modal-content {
     font-family: "Times New Roman", Times, serif;
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 .modal-header {
     background-color: #c6c3c2;
@@ -52,6 +54,11 @@ footer {
     background-color: #dfdcdc;
 }
 
+.modal-footer {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
 .card-header {
     background-color: #c6c3c2;
     text-align: center;
@@ -59,6 +66,15 @@ footer {
 
 .card-body {
     background-color: #a6a6a6;
+}
+
+.row {
+    font-size: 20px;
+}
+
+.card-footer {
+    background-color: #c6c3c2;
+    text-align: center;
 }
 
 #modallogo {
