@@ -22,9 +22,9 @@
 
     const buildStudentList = (data) => {
         $("#studentList").empty();
-        div = $(`<div class="list-group-item row d-flex" id="status">Student Info</div> 
+        div = $(`<div class="list-group-item text-white bg-secondary row d-flex" id="status">Student Info</div> 
                   <div class= "list-group-item row d-flex text-center" id="heading"> 
-                  <div class="col-4 h4">Title</div>
+                  <div class="col-4 h4">Title</div> 
                   <div class="col-4 h4">First</div> 
                   <div class="col-4 h4">Last</div> 
                </div>`);

@@ -2,8 +2,6 @@
     background-color: #c6c3c2;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
-    position: fixed;
-    top: 0;
     width: 100%;
     height: 55px;
 }
@@ -11,34 +9,28 @@
 body {
     background-color: #dfdcdc;
     font-family: "Times New Roman", Times, serif;
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 footer {
     background-color: #c6c3c2;
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     height: 50px;
 }
 
-#logo {
-    width: 400px;
-    height: 400px;
+#studentlogo {
+    width: 300px;
+    height: 300px;
+    text-align: center;
 }
 
 .main {
     text-align: center;
-}
-
-#lookupstubutton {
-    background-color: #c6c3c2;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 6px 16px;
 }
 
 .modal-content {
@@ -52,6 +44,7 @@ footer {
 
 .modal-body {
     background-color: #dfdcdc;
+    text-align: center;
 }
 
 .modal-footer {
@@ -62,6 +55,7 @@ footer {
 .card-header {
     background-color: #c6c3c2;
     text-align: center;
+    font-size: 30px;
 }
 
 .card-body {
@@ -82,12 +76,33 @@ footer {
     height: 150px;
 }
 
-#getbutton {
-    background-color: #c6c3c2;
+#actionbutton {
+    background-color: #a6a6a6;
     border-radius: 6px;
     cursor: pointer;
-    /*font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";*/
     font-weight: 600;
     padding: 6px 16px;
     margin-top: 10px;
+}
+
+/*student list*/
+#status {
+    background-color: #7c7c7c;
+    color: white;
+    font-family: Helvetica;
+    font-size: x-large;
+}
+
+button.list-group-item {
+    background-color: #c2c2c2;
+    color: #2a2a2a;
+    font-family: Helvetica;
+    font-size: larger;
+}
+
+#heading {
+    background-color: #9d9d9d;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 10px 0;
 }
