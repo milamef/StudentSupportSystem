@@ -88,5 +88,24 @@ namespace StudentSupportWebsite.Controllers
         }
 
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                StudentViewModel viewmodel = new() { Id = id };
+                return await viewmodel.Delete() == 1
+                    ? Ok(new { msg = "Student " + id + " deleted!" })
+                    : Ok(new { msg = "Student " + id + " not deleted!" });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Problem in " + GetType().Name + " " +
+                  MethodBase.GetCurrentMethod()!.Name + " " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError); // something went wrong 
+            }
+        }
+
+
     }
 }
