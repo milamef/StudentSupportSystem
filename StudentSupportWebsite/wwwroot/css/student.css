@@ -89,20 +89,17 @@ footer {
 #status {
     background-color: #7c7c7c;
     color: white;
-    font-family: Helvetica;
+    font-family: "Times New Roman", Times, serif;
     font-size: x-large;
 }
 
 button.list-group-item {
     background-color: #c2c2c2;
     color: #2a2a2a;
-    font-family: Helvetica;
+    font-family: "Times New Roman", Times, serif;
     font-size: larger;
 }
 
 #heading {
     background-color: #9d9d9d;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 10px 0;
 }

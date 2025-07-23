@@ -17,16 +17,16 @@
         } catch (error) {
             $("#status").text(error.message);
         }
-    }; // getAll     
+    }; // getAll
 
 
     const buildStudentList = (data) => {
         $("#studentList").empty();
         div = $(`<div class="list-group-item row d-flex" id="status">Student Info</div> 
                   <div class= "list-group-item row d-flex text-center" id="heading"> 
-                  <div class="col-4 h4">Title</div>
-                  <div class="col-4 h4">First</div> 
-                  <div class="col-4 h4">Last</div> 
+                  <div class="col-4 h2">Title</div>
+                  <div class="col-4 h2">First</div> 
+                  <div class="col-4 h2">Last</div> 
                </div>`);
         div.appendTo($("#studentList"));
         sessionStorage.setItem("allstudents", JSON.stringify(data));
@@ -41,7 +41,6 @@
     }; // buildStudentList 
 
     getAll(""); // first grab the data from the server
-
 
     $("#studentList").on('click', (e) => {
         if (!e) e = window.event;
@@ -87,6 +86,7 @@
                 body: JSON.stringify(stu),
             });
             if (response.ok) {
+                debugger;
                 // or check for response.status
                 let payload = await response.json();
                 $("#status").text(payload.msg);
