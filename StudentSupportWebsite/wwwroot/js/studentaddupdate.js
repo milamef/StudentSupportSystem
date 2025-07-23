@@ -17,21 +17,23 @@
         } catch (error) {
             $("#status").text(error.message);
         }
-    }; // getAll
+    }; // getAll     
 
 
     const buildStudentList = (data) => {
         $("#studentList").empty();
-        div = $(`<div class="list-group-item row d-flex" id="status">Student Info</div> 
+        div = $(`<div class="list-group-item text-white bg-secondary row d-flex" id="status">Student Info</div> 
                   <div class= "list-group-item row d-flex text-center" id="heading"> 
-                  <div class="col-4 h2">Title</div>
-                  <div class="col-4 h2">First</div> 
-                  <div class="col-4 h2">Last</div> 
+                  <div class="col-4 h4">Title</div> 
+                  <div class="col-4 h4">First</div> 
+                  <div class="col-4 h4">Last</div> 
                </div>`);
         div.appendTo($("#studentList"));
         sessionStorage.setItem("allstudents", JSON.stringify(data));
+
         btn = $(`<button class="list-group-item row d-flex" id="0">...click to add student</button>`);
         btn.appendTo($("#studentList"));
+
         data.forEach(stu => {
             btn = $(`<button class="list-group-item row d-flex" id="${stu.id}">`);
             btn.html(`<div class="col-4" id="studenttitle${stu.id}">${stu.title}</div> 
@@ -44,6 +46,7 @@
 
     getAll(""); // first grab the data from the server
 
+
     $("#studentList").on('click', (e) => {
         if (!e) e = window.event;
         let id = e.target.parentNode.id;
@@ -52,7 +55,9 @@
         } // clicked on row somewhere else  
         if (id !== "status" && id !== "heading") {
             let data = JSON.parse(sessionStorage.getItem("allstudents"));
-            id === "0" ? setupForAdd() : setupForUpdate(id, data); 
+
+            id === "0" ? setupForAdd() : setupForUpdate(id, data);
+
         } else {
             return false; // ignore if they clicked on heading or status 
         }
@@ -77,7 +82,6 @@
                 body: JSON.stringify(stu),
             });
             if (response.ok) {
-                debugger;
                 // or check for response.status
                 let payload = await response.json();
                 $("#status").text(payload.msg);
@@ -183,8 +187,7 @@
 
     $("#actionbutton").on("click", () => {
         $("#actionbutton").val() === "update" ? update() : add();
-    }); // actionbutton click
-
+    }); // actionbutton click 
 
 
 }); // jQuery ready method

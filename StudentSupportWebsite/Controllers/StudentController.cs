@@ -67,5 +67,26 @@ namespace StudentSupportWebsite.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError); // something went wrong
             }
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult> Post(StudentViewModel viewmodel)
+        {
+            try
+            {
+                await viewmodel.Add();
+                return viewmodel.Id > 1
+                ? Ok(new { msg = "Student " + viewmodel.Lastname + " added!" })
+                : Ok(new { msg = "Student " + viewmodel.Lastname + " not added!" });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Problem in " + GetType().Name + " " +
+                  MethodBase.GetCurrentMethod()!.Name + " " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError); // something went wrong 
+            }
+        }
+
+
     }
 }
