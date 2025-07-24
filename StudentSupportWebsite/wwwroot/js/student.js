@@ -13,7 +13,18 @@
                 errorRtn(problemJson, response.status);
             } else { // else 404 not found 
                 $("#status").text("no such path on server");
-            } // else 
+            } // else
+            // get major data 
+            response = await fetch(`/api/major`);
+            if (response.ok) {
+                let mjrs = await response.json(); // this returns a promise, so we await it 
+                sessionStorage.setItem("allmajors", JSON.stringify(mjrs));
+            } else if (response.status !== 404) { // probably some other client side error 
+                let problemJson = await response.json();
+                errorRtn(problemJson, response.status);
+            } else { // else 404 not found 
+                $("#status").text("no such path on server");
+            } // else
         } catch (error) {
             $("#status").text(error.message);
         }
@@ -70,6 +81,7 @@
             stu.lastname = $("#TextBoxLastName").val();
             stu.email = $("#TextBoxEmail").val();
             stu.phoneno = $("#TextBoxPhoneNo").val();
+            stu.majorId = parseInt($("#ddlMajors").val());
             // send the updated back to the server asynchronously using Http PUT
             let response = await fetch("/api/student", {
                 method: "PUT",
@@ -77,7 +89,6 @@
                 body: JSON.stringify(stu),
             });
             if (response.ok) {
-                debugger;
                 // or check for response.status
                 let payload = await response.json();
                 $("#status").text(payload.msg);
@@ -101,6 +112,7 @@
 
 
     const clearModalFields = () => {
+        loadMajorDDL(-1);
         $("#TextBoxTitle").val("");
         // clean out the other four text boxes go here as well 
         $("#TextBoxFirstName").val("");
@@ -113,6 +125,8 @@
 
 
     const setupForAdd = () => {
+        $("#deletebutton").hide();
+        $("#dialog").hide();
         $("#actionbutton").val("add");
         $("#modaltitle").html("<h4>add student</h4>");
         $("#theModal").modal("toggle");
@@ -123,6 +137,8 @@
 
 
     const setupForUpdate = (id, data) => {
+        $("#deletebutton").show();
+        $("#dialog").hide();
         $("#actionbutton").val("update");
         $("#modaltitle").html("<h4>update student</h4>");
         clearModalFields();
@@ -138,6 +154,7 @@
                 $("#modalstatus").text("update data");
                 $("#theModal").modal("toggle");
                 $("#theModalLabel").text("Update");
+                loadMajorDDL(student.majorId);
             } // if 
         }); // data.forEach 
     }; // setupForUpdate
@@ -185,6 +202,59 @@
         $("#actionbutton").val() === "update" ? update() : add();
     }); // actionbutton click
 
+
+    const _delete = async () => {
+        let student = JSON.parse(sessionStorage.getItem("student"));
+        try {
+            $("#dialog").show(); // Show the confirmation dialog
+            $("#modalstatus").text("update data");
+            // Attach event handlers
+            $("#yesbutton").off("click").on("click", async () => {
+                try {
+                    let response = await fetch(`/api/student/${student.id}`, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json; charset=utf-8' }
+                    });
+
+                    if (response.ok) {
+                        let data = await response.json();
+                        getAll(data.msg); // Refresh the student list
+                        $('#modalstatus').text('Student deleted successfully!');
+                    } else {
+                        $('#status').text(`Status - ${response.status}, Problem on delete server side, see server console`);
+                    }
+                    $('#theModal').modal('toggle'); // Close the modal
+                } catch (error) {
+                    $('#status').text(error.message);
+                } finally {
+                    $("#dialog").hide(); // Always hide the dialog
+                }
+            });
+
+            $("#nobutton").off("click").on("click", () => {
+                $('#modalstatus').text('Delete cancelled!');
+                $("#dialog").hide(); // Hide the dialog if the user cancels
+            });
+
+        } catch (error) {
+            $('#status').text(error.message);
+        }
+    }; //_delete
+
+
+    $("#deletebutton").on("click", () => {
+        _delete();
+    }); // deletebutton click
+
+
+    const loadMajorDDL = (stumjr) => {
+        html = '';
+        $('#ddlMajors').empty();
+        let allmajors = JSON.parse(sessionStorage.getItem('allmajors'));
+        allmajors.forEach((mjr) => { html += `<option value="${mjr.id}">${mjr.majorName}</option>` });
+        $('#ddlMajors').append(html);
+        $('#ddlMajors').val(stumjr);
+    }; // loadMajorDDL 
 
 
 }); // jQuery ready method
