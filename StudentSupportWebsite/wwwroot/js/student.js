@@ -254,7 +254,10 @@
         allmajors.forEach((mjr) => { html += `<option value="${mjr.id}">${mjr.majorName}</option>` });
         $('#ddlMajors').append(html);
         $('#ddlMajors').val(stumjr);
-    }; // loadMajorDDL 
+    }; // loadMajorDDL
+
+
+    
 
 
 }); // jQuery ready method
