@@ -121,6 +121,8 @@
         $("#TextBoxEmail").val("");
         sessionStorage.removeItem("student");
         $("#theModal").modal("toggle");
+        let validator = $("#StudentModalForm").validate();
+        validator.resetForm();
     }; // clearModalFields
 
 
@@ -132,6 +134,7 @@
         $("#theModal").modal("toggle");
         $("#modalstatus").text("add new student");
         $("#theModalLabel").text("Add");
+        $("#modalstatus").removeClass();
         clearModalFields();
     }; // setupForAdd
 
@@ -141,6 +144,7 @@
         $("#dialog").hide();
         $("#actionbutton").val("update");
         $("#modaltitle").html("<h4>update student</h4>");
+        $("#modalstatus").removeClass();
         clearModalFields();
         data.forEach(student => {
             if (student.id === parseInt(id)) {
@@ -257,7 +261,56 @@
     }; // loadMajorDDL
 
 
-    
+    document.addEventListener("keyup", e => {
+        $("#modalstatus").removeClass(); //remove any existing css on div 
+        if ($("#StudentModalForm").valid()) {
+            $("#modalstatus").attr("class", "badge bg-success"); //green 
+            $("#modalstatus").text("data entered is valid");
+            $("#actionbutton").prop("disabled", false);
+        }
+        else {
+            $("#modalstatus").attr("class", "badge bg-danger");  //red 
+            $("#modalstatus").text("fix errors");
+            $("#actionbutton").prop("disabled", true);
+        }
+    });
+
+
+    $("#StudentModalForm").validate({
+        rules: {
+            TextBoxTitle: { maxlength: 4, required: true, validTitle: true },
+            TextBoxFirstName: { maxlength: 25, required: true },
+            TextBoxLastName: { maxlength: 25, required: true },
+            TextBoxEmail: { maxlength: 40, required: true, email: true },
+            TextBoxPhoneNo: { maxlength: 15, required: true }
+        },
+        errorElement: "div",
+        messages: {
+            TextBoxTitle: {
+                required: "required 1-4 chars.", maxlength: "required 1-4 chars.", validTitle: "Mr. Ms. Mrs. or Dr."
+            },
+            TextBoxFirstName: {
+                required: "required 1-25 chars.", maxlength: "required 1-25 chars."
+            },
+            TextBoxLastName: {
+                required: "required 1-25 chars.", maxlength: "required 1-25 chars."
+            },
+            TextBoxPhoneNo: {
+                required: "required 1-15 chars.", maxlength: "required 1-15 chars."
+            },
+            TextBoxEmail: {
+                required: "required 1-40 chars.", maxlength: "required 1-40 chars.", email: "need valid email format"
+            }
+        }
+    }); //StudentModalForm.validate
+
+
+    $.validator.addMethod("validTitle", (value) => {    //custome rule 
+        return (value === "Mr." || value === "Ms." || value === "Mrs." || value === "Dr.");
+    }, ""); //.validator.addMethod
+
+
+
 
 
 }); // jQuery ready method

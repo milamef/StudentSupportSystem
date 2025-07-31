@@ -35,11 +35,12 @@
         <h5>Student Support v1.0</h5>
     </div>
 
-        <div class="justify-content-center align-items-center row mb-5 w-100">
+    <div class="justify-content-center align-items-center row mb-5 w-100">
             <div class="list-group col-10" id="studentList">
             </div>
-        </div>
+    </div>
 
+    <form id="StudentModalForm" name="StudentModalForm" method="post" action="">
         <!-- This <div> contains the modal markup -->
         <div class="modal fade" id="theModal" data-bs-backdrop="static"
              data-bs-keyboard="false" tabindex="-1" aria-labelledby="theModalLabel" aria-hidden="true">
@@ -61,6 +62,7 @@
                                             <input type="text"
                                                    placeholder="enter title"
                                                    id="TextBoxTitle"
+                                                   name="TextBoxTitle"
                                                    class="form-control" />
                                         </div>
                                     </div>
@@ -70,6 +72,7 @@
                                             <input type="text"
                                                    placeholder="enter first name"
                                                    id="TextBoxFirstName"
+                                                   name="TextBoxFirstName"
                                                    class="form-control" />
                                         </div>
                                     </div>
@@ -79,6 +82,7 @@
                                             <input type="text"
                                                    placeholder="enter last name"
                                                    id="TextBoxLastName"
+                                                   name="TextBoxLastName"
                                                    class="form-control" />
                                         </div>
                                     </div>
@@ -88,6 +92,7 @@
                                             <input type="text"
                                                    placeholder="enter email"
                                                    id="TextBoxEmail"
+                                                   name="TextBoxEmail"
                                                    class="form-control" />
                                         </div>
                                     </div>
@@ -97,6 +102,7 @@
                                             <input type="text"
                                                    placeholder="enter phone number"
                                                    id="TextBoxPhoneNo"
+                                                   name="TextBoxPhoneNo"
                                                    class="form-control" />
                                         </div>
                                     </div>
@@ -104,36 +110,38 @@
                                         <div class="col-3">Major:</div>
                                         <div class="col-9">
                                             <select id="ddlMajors" name="ddlMajors" class="form-control">
-                                             </select>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-footer text-center">
-                                <div class="row" style="padding-left:8vw;">
-                                    <input type="button" value="update" id="actionbutton" class="col-3 m-2 col-5"
-                                           style="left:20%" />
-                                    <input type="button" value="delete" id="deletebutton" class="col-3 m-2 col-5"/>
-                                </div>
+                                    <div class="row" style="padding-left:8vw;">
+                                        <input type="button" value="update" id="actionbutton" class="col-3 m-2 col-5"
+                                               style="left:20%" />
+                                        <input type="button" value="delete" id="deletebutton" class="col-3 m-2 col-5" />
+                                    </div>
 
-                                <div class="alert alert-danger fade show" role="alert" id="dialog"
-                                     style="width:80%;margin-top:2vh;margin-left:10%;">
-                                    <strong>Delete Student?</strong><p></p>
-                                    <input type="button" value="yes" id="yesbutton" />
-                                    <input type="button" value="no" id="nobutton" />
-                                </div>
+                                    <div class="alert alert-danger fade show" role="alert" id="dialog"
+                                         style="width:80%;margin-top:2vh;margin-left:10%;">
+                                        <strong>Delete Student?</strong><p></p>
+                                        <input type="button" value="yes" id="yesbutton" />
+                                        <input type="button" value="no" id="nobutton" />
+                                    </div>
 
-                                <div id="modalstatus" class="text-left mt-3 mb-2"></div>
+                                    <div id="modalstatus" class="text-left mt-3 mb-2"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
 
-        <script src="/lib/js/jquery.min.js"></script>
-        <script src="/lib/js/bootstrap.min.js"></script>
-        <script src="/lib/js/jquery.validate.min.js"></script>
-        <script src="/js/student.js"></script>
+    <script src="/lib/js/jquery.min.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
+    <script src="/lib/js/jquery.validate.min.js"></script>
+    <script src="/js/student.js"></script>
 </body>
 </html>

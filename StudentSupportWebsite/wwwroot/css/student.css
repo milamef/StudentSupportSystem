@@ -126,3 +126,15 @@ button.list-group-item {
     padding: 6px 16px;
     margin-top: 10px;
 }
+
+div.error {
+    background-color: #FA873E;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    left: 200px;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
